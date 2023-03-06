@@ -5,7 +5,13 @@ import {
   OpenSans_500Medium,
   OpenSans_800ExtraBold,
 } from "@expo-google-fonts/open-sans";
-import { StyleSheet, View, ImageBackground, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import GameScreen from "./screens/GameScreen";
@@ -60,27 +66,29 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary300, Colors.tertiary300]}
-      style={styles.rootScreen}
-      onLayout={onLayoutRootView}
-    >
-      <ImageBackground
-        source={require("./assets/images/brett-jordan-4aB1nGtD_Sg-unsplash.jpg")}
-        resizeMode="cover"
+    <>
+      <StatusBar style="dark" />
+      <LinearGradient
+        colors={[Colors.primary300, Colors.tertiary300]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
+        onLayout={onLayoutRootView}
       >
-        <SafeAreaView style={styles.innerRootScreen}>
-          <View style={styles.innerRootScreen}>
-            <StatusBar style="auto" />
-            {screen}
-          </View>
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/brett-jordan-4aB1nGtD_Sg-unsplash.jpg")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.innerRootScreen}>
+            <View style={styles.innerRootScreen}>{screen}</View>
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
+
+const deviceHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   rootScreen: {
@@ -88,6 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: deviceHeight < 380 ? 0 : 10,
   },
   backgroundImage: {
     opacity: 0.1,

@@ -14,5 +14,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingBottom: 20,
     fontFamily: "OpenSans_800ExtraBold",
+    textAlign: "center",
   },
 });
